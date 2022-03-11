@@ -12,6 +12,7 @@ const logoMeteo = document.querySelector('.logo-meteo')
 const populationN = document.querySelector('.populationN')
 const surfaceN = document.querySelector('.surfaceN')
 const postalN = document.querySelector('.postalN')
+const departmentN = document.querySelector('.departmentN')
 
 if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
@@ -23,6 +24,8 @@ if (navigator.geolocation) {
         alert('Veuillez accepter la géolocalisation')
     })
 }
+
+
 
 const callWeather = (long, lat) => {
     fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&exclude=minutely&units=metric&lang=fr&appid=${keyApi}`)
@@ -55,7 +58,7 @@ const callWeather = (long, lat) => {
             for (let k = 1; k < orderDays.length; k++) {
                 day[k].innerText = orderDays[k].slice(0, 3)
             }
-            for (let m = 0; m < 7; m++) {
+            for (let m = 1; m < 7; m++) {
                 dayTemperature[m].innerText = `${Math.trunc(data.daily[m + 1].temp.day)}°`
             }
 
@@ -65,13 +68,18 @@ const callWeather = (long, lat) => {
 let population
 let surface
 let postal
+let department
+
+
 const getCity = (long, lat) => {
-    fetch(`https://geo.api.gouv.fr/communes?lat=${lat}&lon=${long}&fields=code,nom,codesPostaux,surface,population,centre,contour`)
-        .then((response) => {
+   
+    fetch(`https://geo.api.gouv.fr/communes?lat=${lat}&lon=${long}&fields=code,nom,codesPostaux,surface,population,centre,contour,departement`)
+    
+    .then((response) => {
             return response.json()
         })
         .then((cit) => {
-            console.log(cit);
+            console.log("yo", cit);
             let city = cit[0].nom;
             currentCity.innerText = city
             population = cit[0].population
@@ -79,20 +87,24 @@ const getCity = (long, lat) => {
             surface = Math.trunc(cit[0].surface / 100) + "km²"
             console.log(surface);
             postal = cit[0].codesPostaux[0]
+            department = cit[0].departement.nom
             postalN.innerText = "Code postal: " + postal
-            surfaceN.innerText = "superficie: " + surface
-            populationN.innerText = "population: " + population + " hab"
+            surfaceN.innerText = "Superficie: " + surface
+            populationN.innerText = "Population: " + population + " hab"
+            departmentN.innerText = "Département: " + department
         })
         .then(() => {
             lgDat()
         })
+
 }
 
 
 const lgDat = () => {
     currentCity.addEventListener('click', () => {
-
         const detail = document.querySelector('.detail-city')
         detail.classList.toggle("hidden")
     })
 }
+
+
