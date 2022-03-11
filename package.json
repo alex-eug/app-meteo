@@ -1,0 +1,20 @@
+{
+  "name": "app-meteo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alex-eug/app-meteo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alex-eug/app-meteo/issues"
+  },
+  "homepage": "https://github.com/alex-eug/app-meteo#readme"
+}
