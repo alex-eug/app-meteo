@@ -1,6 +1,8 @@
 import orderDays from "./usingTool/timeHow.js";
+import searchCity from "./usingTool/searchCity.js";
 
 const keyApi = "6df5f6b70ef5c4e862fe5907f1e19121"
+const geoApi = "https://geo.api.gouv.fr/communes"
 const weather = document.querySelector('.weather');
 const temperature = document.querySelector('.temperature');
 const currentCity = document.querySelector('.currentCity');
@@ -42,11 +44,11 @@ const callWeather = (long, lat) => {
                 let hourMore = hourNow + i * 2;
 
                 if (hourMore > 24) {
-                    hour[i].innerText = `${hourMore - 24} h`
+                    hour[i].innerText = `${hourMore - 24}h`
                 } else if (hourMore === 24) {
                     hour[i].innerText = `00h`
                 } else {
-                    hour[i].innerText = `${hourMore} h`
+                    hour[i].innerText = `${hourMore}h`
                 }
 
             }
@@ -72,10 +74,10 @@ let department
 
 
 const getCity = (long, lat) => {
-   
-    fetch(`https://geo.api.gouv.fr/communes?lat=${lat}&lon=${long}&fields=code,nom,codesPostaux,surface,population,centre,contour,departement`)
-    
-    .then((response) => {
+
+    fetch(`${geoApi}?lat=${lat}&lon=${long}&fields=code,nom,codesPostaux,surface,population,centre,contour,departement`)
+
+        .then((response) => {
             return response.json()
         })
         .then((cit) => {
@@ -107,4 +109,6 @@ const lgDat = () => {
     })
 }
 
+//search city by zipcode with search city folder 
+searchCity()
 

@@ -61,6 +61,7 @@ body{
 
 .weather-info{
     font-size: 2.5rem;
+    text-transform: capitalize;
 }
 .logo-container{
     width: 150px;
