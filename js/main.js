@@ -1,5 +1,5 @@
 import orderDays from "./usingTool/timeHow.js";
-import searchCity from "./usingTool/searchCity.js";
+//import searchCity from "./usingTool/searchCity.js";
 
 const keyApi = "254350759447b3094f19480fd0a9d2dc"
 const geoApi = "https://geo.api.gouv.fr/communes"
@@ -35,7 +35,7 @@ const callWeather = (long, lat) => {
             return response.json();
         })
         .then((data) => {
-            console.log(data);
+            //console.log(data);
             weather.innerText = data.current.weather[0].description;
             temperature.innerText = Math.trunc(data.current.temp) + "°"
             logoMeteo.setAttribute("src", `http://openweathermap.org/img/wn/${data.hourly[0].weather[0].icon}@2x.png`)
@@ -81,13 +81,13 @@ const getCity = (long, lat) => {
             return response.json()
         })
         .then((cit) => {
-            console.log("yo", cit);
+            //console.log("yo", cit);
             let city = cit[0].nom;
             currentCity.innerText = city
             population = cit[0].population
-            console.log(population);
+            //console.log(population);
             surface = Math.trunc(cit[0].surface / 100) + "km²"
-            console.log(surface);
+            //console.log(surface);
             postal = cit[0].codesPostaux[0]
             department = cit[0].departement.nom
             postalN.innerText = "Code postal: " + postal
@@ -110,5 +110,5 @@ const lgDat = () => {
 }
 
 //search city by zipcode with search city folder 
-searchCity()
+// searchCity()
 
