@@ -1,7 +1,7 @@
 import orderDays from "./usingTool/timeHow.js";
 import searchCity from "./usingTool/searchCity.js";
 
-const keyApi = "6df5f6b70ef5c4e862fe5907f1e19121"
+const keyApi = "254350759447b3094f19480fd0a9d2dc"
 const geoApi = "https://geo.api.gouv.fr/communes"
 const weather = document.querySelector('.weather');
 const temperature = document.querySelector('.temperature');
